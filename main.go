@@ -5,6 +5,8 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"time"
+	"github.com/prometheus/common/version"
+	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 type app struct {
@@ -35,6 +37,10 @@ func (a *app) bg() {
 }
 
 func main() {
+	kingpin.Version(version.Print("standard-app"))
+	kingpin.HelpFlag.Short('h')
+	kingpin.Parse()
+
 	a := &app{
 		started: true,
 	}
