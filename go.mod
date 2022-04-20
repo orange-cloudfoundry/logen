@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gorilla/mux v1.8.0
-	github.com/prometheus/common v0.33.0
+	github.com/prometheus/common v0.34.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
 
