@@ -9,23 +9,37 @@ import (
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
+const (
+	usage = `
+/start : start sending 20 log/s for 1 minute
+/stop  : stop sending logs
+/*     : give this usage
+`
+)
+
 type app struct {
-	started bool
+	end time.Time
 }
 
 func (a *app) start(w http.ResponseWriter, r *http.Request) {
-	a.started = true
+	a.end = time.Now().Add(1 * time.Minute)
 	w.WriteHeader(200)
 }
 
 func (a *app) stop(w http.ResponseWriter, r *http.Request) {
-	a.started = false
+	a.end = time.Now()
 	w.WriteHeader(200)
 }
 
+func (a *app) defaultHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte(usage))
+	w.WriteHeader(200)
+}
+
+
 func (a *app) bg() {
 	for {
-		if !a.started {
+		if time.Now().After(a.end) {
 			time.Sleep(1 * time.Second)
 			continue
 		}
@@ -42,12 +56,16 @@ func main() {
 	kingpin.Parse()
 
 	a := &app{
-		started: true,
+		end: time.Now(),
 	}
 	go a.bg()
 
 	router := mux.NewRouter()
 	router.HandleFunc("/start", a.start)
 	router.HandleFunc("/stop", a.stop)
+	router.NotFoundHandler = http.HandlerFunc(a.defaultHandler)
+	router.HandleFunc("/", a.stop)
+	fmt.Printf("listening on :8080\n")
+	fmt.Printf("%s", usage)
 	panic(http.ListenAndServe(":8080", router))
 }
