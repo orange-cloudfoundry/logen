@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/common/version"
 	"net/http"
 	"time"
-	"github.com/prometheus/common/version"
-	"github.com/alecthomas/kingpin/v2"
 )
 
 const (
@@ -21,21 +21,20 @@ type app struct {
 	end time.Time
 }
 
-func (a *app) start(w http.ResponseWriter, r *http.Request) {
+func (a *app) start(w http.ResponseWriter, _ *http.Request) {
 	a.end = time.Now().Add(1 * time.Minute)
 	w.WriteHeader(200)
 }
 
-func (a *app) stop(w http.ResponseWriter, r *http.Request) {
+func (a *app) stop(w http.ResponseWriter, _ *http.Request) {
 	a.end = time.Now()
 	w.WriteHeader(200)
 }
 
-func (a *app) defaultHandler(w http.ResponseWriter, r *http.Request) {
+func (a *app) defaultHandler(w http.ResponseWriter, _ *http.Request) {
 	w.Write([]byte(usage))
 	w.WriteHeader(200)
 }
-
 
 func (a *app) bg() {
 	for {
