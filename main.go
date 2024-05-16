@@ -32,6 +32,7 @@ func (a *app) stop(w http.ResponseWriter, _ *http.Request) {
 }
 
 func (a *app) defaultHandler(w http.ResponseWriter, _ *http.Request) {
+	// nolint:errcheck
 	w.Write([]byte(usage))
 	w.WriteHeader(200)
 }
