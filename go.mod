@@ -5,7 +5,7 @@ go 1.22.3
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/gorilla/mux v1.8.1
-	github.com/prometheus/common v0.54.0
+	github.com/prometheus/common v0.55.0
 )
 
 require (
