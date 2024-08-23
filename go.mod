@@ -1,6 +1,6 @@
 module github.com/orange-cloudfoundry/logen
 
-go 1.22.3
+go 1.22.6
 
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
@@ -9,6 +9,6 @@ require (
 )
 
 require (
-	github.com/alecthomas/units v0.0.0-20231202071711-9a357b53e9c9 // indirect
+	github.com/alecthomas/units v0.0.0-20240626203959-61d1e3462e30 // indirect
 	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
 )
