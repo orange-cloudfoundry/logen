@@ -1,6 +1,6 @@
 module github.com/orange-cloudfoundry/logen
 
-go 1.24.1
+go 1.23.6
 
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
