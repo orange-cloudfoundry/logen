@@ -25,8 +25,7 @@ builds:
 
 archives:
   - id: archives
-    builds:
-      - binary
+    ids: [binary]
     formats: ['tar.gz']
     name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
     wrap_in_directory: true
