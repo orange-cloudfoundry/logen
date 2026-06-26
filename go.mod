@@ -1,11 +1,11 @@
 module github.com/orange-cloudfoundry/logen
 
-go 1.25
+go 1.26
 
 require (
 	github.com/alecthomas/kingpin/v2 v2.4.0
 	github.com/gorilla/mux v1.8.1
-	github.com/prometheus/common v0.67.5
+	github.com/prometheus/common v0.69.0
 )
 
 require (
