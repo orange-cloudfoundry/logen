@@ -16,7 +16,7 @@ go test ./... || error_exit "Étape 2 - Les tests initiaux échouent"
 
 echo ""
 echo "=== Étape 3: Mise à jour de la version Go ==="
-GO_VERSION="1.25.5"
+GO_VERSION="1.27.4"
 echo "Mise à jour vers Go $GO_VERSION"
 go mod edit -go=$GO_VERSION || error_exit "Étape 3 - Impossible de mettre à jour la version Go"
 echo "⚠️  N'oublie pas de vérifier manuellement les fichiers .github/workflows/*.yml si nécessaire"
